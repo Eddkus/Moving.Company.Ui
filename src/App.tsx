@@ -1,22 +1,15 @@
-import './App.css'
-import {useNavigate} from 'react-router-dom'
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import OrderPage from "./sites/OrderPage";
+import HomePage from "./sites/HomePage";
 
 export default function App() {
-  const navigate = useNavigate()
-
-  const navigateToOrder = () => {
-    navigate('../OrderPage')
-  }
-
   return (
-    <div className="App">
-      <h1 className="main-logo">Eddie's Moving Company</h1>
-      <div className="card">
-        <button onClick={navigateToOrder}>Make an Order</button>
-      </div>
-      <p className="read-the-docs">
-        Quick and Clean Moving Service
-      </p>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/OrderPage" element={<OrderPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
