@@ -10,28 +10,30 @@ export default function form() {
     email: "",
     fromAddress: "",
     toAddress: "",
+    movingService: false,
+    packingService: false,
+    cleaningService: false,
     currentDate: new Date(),
     orderNotes: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setOrder({ ...order, [e.target.name]: e.target.value });
   };
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (e: any) => {
     setOrder({ ...order, currentDate: e });
+  };
+
+  const hangleCheckboxChange = (e: any) => {
+    setOrder({ ...order, [e.target.name]: e.target.checked });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(order);
-    let config = {
-      headers: {
-        accept: "text/plain",
-      },
-    };
     axios
-      .post("https://localhost:7285/api/Orders", order, config)
+      .post("https://localhost:7285/api/Orders", order)
       .then((response) => {
         setOrder({
           name: "",
@@ -39,6 +41,9 @@ export default function form() {
           email: "",
           fromAddress: "",
           toAddress: "",
+          movingService: false,
+          packingService: false,
+          cleaningService: false,
           currentDate: new Date(),
           orderNotes: "",
         });
@@ -115,15 +120,30 @@ export default function form() {
         ></input>
       </div>
 
-      <div className="services">
-        <label>Moving:</label>
-        <input type="checkbox"></input>
+      <div className="services-label">
+        <label>Services:</label>
+        <div className="services">
+          <label>Moving:</label>
+          <input
+            type="checkbox"
+            name="movingService"
+            onChange={hangleCheckboxChange}
+          ></input>
 
-        <label>Packing:</label>
-        <input type="checkbox"></input>
+          <label>Packing:</label>
+          <input
+            type="checkbox"
+            name="packingService"
+            onChange={hangleCheckboxChange}
+          ></input>
 
-        <label>Cleaning:</label>
-        <input type="checkbox"></input>
+          <label>Cleaning:</label>
+          <input
+            type="checkbox"
+            name="cleaningService"
+            onChange={hangleCheckboxChange}
+          ></input>
+        </div>
       </div>
 
       <div className="form-grid">
@@ -135,7 +155,7 @@ export default function form() {
           timeFormat="HH:mm"
           timeIntervals={15}
           timeCaption="Time"
-          dateFormat="MMMM d, yyyy hh:mm"
+          dateFormat="MMMM d, yyyy HH:mm"
           onChange={handleDateChange}
         />
       </div>
@@ -143,6 +163,7 @@ export default function form() {
       <div className="form-grid">
         <label>Order Notes:</label>
         <textarea
+          maxLength={75}
           placeholder="Extra info relevant to the order"
           name="orderNotes"
           onChange={handleChange}
