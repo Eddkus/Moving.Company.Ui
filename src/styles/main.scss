@@ -60,11 +60,19 @@ button {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
 
 button:hover{
     background-color: rgba(0, 136, 169, 0.8);
-
 }
 
 form button {
@@ -101,10 +109,10 @@ form label{
     display: grid;
     grid-template-columns: 4fr 1fr 4fr 1fr 4fr 1fr;
     height: 85%;
-    width: 25vw;
     gap: 2em;
     align-content: center;
     margin-left: 7vw;
+    overflow: auto;
 }
 
 .services input{

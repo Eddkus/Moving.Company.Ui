@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
+import SubmitButton from "./SubmitButton";
 
 export default function form() {
   const [order, setOrder] = useState({
@@ -31,7 +32,6 @@ export default function form() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(order);
     axios
       .post("https://localhost:7285/api/Orders", order)
       .then((response) => {
@@ -47,7 +47,6 @@ export default function form() {
           currentDate: new Date(),
           orderNotes: "",
         });
-        console.log(response);
       })
       .catch((err) => {
         return console.log(err);
@@ -171,7 +170,7 @@ export default function form() {
         ></textarea>
       </div>
 
-      <button type="submit">Submit</button>
+      <SubmitButton></SubmitButton>
     </form>
   );
 }

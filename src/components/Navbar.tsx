@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 export default function navbar() {
   return (
@@ -7,7 +8,7 @@ export default function navbar() {
         <a href="/">Moving Company</a>
         <div className="nav-search">
           <input type="search" name="search" placeholder="Search" id="search" />
-          <button>Search</button>
+          <Button></Button>
         </div>
       </nav>
     </div>
