@@ -76,7 +76,10 @@ button:hover{
 }
 
 form button {
-    padding: 0px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 form {
